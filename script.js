@@ -7,7 +7,7 @@ const products = [
     price: 11.90,
     tag: 'Best Seller',
     desc: 'Creamy durian filling with a soft cheese pull and thin handmade crust.',
-    img: './assets/durian.jpg'
+    img: './durian.jpg'
   },
   {
     id: 'matcha',
@@ -15,7 +15,7 @@ const products = [
     price: 13.90,
     tag: 'Premium Matcha',
     desc: 'Earthy matcha filling tucked inside the same thin crust with rich cream cheese.',
-    img: './assets/matcha.jpg'
+    img: './matcha.jpg'
   },
   {
     id: 'seasalt',
@@ -23,7 +23,7 @@ const products = [
     price: 9.90,
     tag: 'Classic',
     desc: 'Creamy white cheese filling with a light savoury sea-salt finish.',
-    img: './assets/seasalt.jpg'
+    img: './seasalt.jpg'
   },
   {
     id: 'oreo',
@@ -31,7 +31,7 @@ const products = [
     price: 7.90,
     tag: 'Per Slice',
     desc: 'No-bake Oreo cheesecake slice with Oreo crumbs and a thick cookie base.',
-    img: './assets/oreo.jpg'
+    img: './oreo.jpg'
   },
   {
     id: 'fruittea',
@@ -39,7 +39,7 @@ const products = [
     price: 5.90,
     tag: 'Refreshing',
     desc: 'A bright, refreshing tea pairing for the cheese pies and cheesecake.',
-    img: './assets/fruittea.jpg'
+    img: './fruittea.jpg'
   }
 ];
 
@@ -99,7 +99,7 @@ function submitOrder(e){
 
 document.addEventListener('DOMContentLoaded', () => {
   const hero = document.getElementById('heroImage');
-  hero.src = './assets/hero.jpg';
+  hero.src = './hero.jpg';
   renderProducts();
   renderCart();
   document.getElementById('clearCartDesktop').addEventListener('click', clearCart);

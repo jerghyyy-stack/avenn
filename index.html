@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Whisk & Bloom | Handmade Desserts</title>
+  <meta name="description" content="Whisk & Bloom handmade cheese pies and desserts, made to order in Singapore." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home"><span class="brand-mark">W&B</span><span>Whisk & Bloom</span></a>
+    <nav>
+      <a href="#menu">Menu</a>
+      <a href="#how">How to order</a>
+      <a href="#checkout">Checkout</a>
+    </nav>
+    <button class="cart-pill" id="openCartMobile">Cart <span id="cartCount">0</span></button>
+  </header>
+
+  <main id="home">
+    <section class="hero section-pad">
+      <div class="hero-copy">
+        <p class="eyebrow">Freshly made to order</p>
+        <h1>Handcrafted desserts with a soft, cosy finish.</h1>
+        <p class="hero-text">Cheese pies, Oreo cheesecake slices, and refreshing fruit tea prepared in small batches for delivery in Singapore.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#menu">Order now</a>
+          <a class="btn ghost" href="https://wa.me/6588928698" target="_blank" rel="noreferrer">WhatsApp us</a>
+        </div>
+        <div class="notes">
+          <span>Pre-order recommended</span>
+          <span>$5 delivery fee</span>
+          <span>PayNow payment</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img id="heroImage" alt="Durian cheese pie in Whisk & Bloom style" />
+      </div>
+    </section>
+
+    <section id="menu" class="section-pad menu-layout">
+      <div class="content-column">
+        <div class="section-head">
+          <p class="eyebrow">Our menu</p>
+          <h2>Signature Collection</h2>
+          <p>Choose your desserts and keep your order summary open on the side. On mobile, your cart slides up smoothly.</p>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+
+      <aside class="cart desktop-cart" aria-label="Shopping cart">
+        <div class="cart-head">
+          <div><p class="eyebrow">Your order</p><h3>Cart</h3></div>
+          <button class="clear" id="clearCartDesktop">Clear</button>
+        </div>
+        <div id="cartItemsDesktop" class="cart-items empty">Your cart is empty.</div>
+        <div class="totals">
+          <div><span>Subtotal</span><strong id="subtotalDesktop">$0.00</strong></div>
+          <div><span>Delivery</span><strong>$5.00</strong></div>
+          <div class="grand"><span>Total</span><strong id="totalDesktop">$0.00</strong></div>
+        </div>
+        <a class="btn primary full" href="#checkout">Checkout</a>
+      </aside>
+    </section>
+
+    <section id="how" class="section-pad info-strip">
+      <article><strong>1 day pre-order</strong><span>Freshly prepared in small batches.</span></article>
+      <article><strong>PayNow only</strong><span>QR will be shown after order submission.</span></article>
+      <article><strong>Delivery $5</strong><span>Final availability will be confirmed via WhatsApp.</span></article>
+    </section>
+
+    <section id="checkout" class="section-pad checkout-wrap">
+      <div class="checkout-card">
+        <p class="eyebrow">Checkout</p>
+        <h2>Delivery details</h2>
+        <form id="orderForm" class="checkout-form">
+          <label>Name<input required name="name" placeholder="Your name" /></label>
+          <label>Mobile number<input required name="phone" placeholder="e.g. 91234567" /></label>
+          <label>Delivery address<textarea required name="address" rows="3" placeholder="Block, street, unit number"></textarea></label>
+          <div class="two-col">
+            <label>Preferred date<input required name="date" type="date" /></label>
+            <label>Preferred time<select name="time"><option>12pm – 2pm</option><option>2pm – 4pm</option><option>4pm – 6pm</option><option>6pm – 8pm</option></select></label>
+          </div>
+          <label>Remarks<textarea name="remarks" rows="2" placeholder="Optional notes"></textarea></label>
+          <button class="btn primary full" type="submit">Place order via WhatsApp</button>
+          <p class="fineprint">This prototype uses WhatsApp submission and manual PayNow verification. The live backend/admin dashboard can be added next.</p>
+        </form>
+      </div>
+      <div class="payment-card">
+        <p class="eyebrow">Payment</p>
+        <h3>PayNow QR placeholder</h3>
+        <div class="qr-box">PayNow QR<br/><small>hidden for now</small></div>
+        <p>After submitting your order, please make payment by PayNow. We will verify and confirm by WhatsApp.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="mobile-cart" id="mobileCart">
+    <div class="mobile-cart-panel">
+      <div class="cart-head"><div><p class="eyebrow">Your order</p><h3>Cart</h3></div><button class="clear" id="closeCartMobile">Close</button></div>
+      <div id="cartItemsMobile" class="cart-items empty">Your cart is empty.</div>
+      <div class="totals"><div><span>Subtotal</span><strong id="subtotalMobile">$0.00</strong></div><div><span>Delivery</span><strong>$5.00</strong></div><div class="grand"><span>Total</span><strong id="totalMobile">$0.00</strong></div></div>
+      <a class="btn primary full" href="#checkout" id="checkoutMobile">Checkout</a>
+    </div>
+  </div>
+  <a class="whatsapp" href="https://wa.me/6588928698" target="_blank" rel="noreferrer">WhatsApp</a>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,14 +1,16 @@
 const deliveryFee = 5;
+let activeProductId = null;
+let modalQty = 1;
 
 const products = [
-  { id: 'oreo-cheesecake', category: 'Cheesecakes', name: 'Oreo Cheesecake', price: 7.90, tag: 'Best Seller', desc: 'Cookies and cream cheesecake slice with Oreo crumble and a rich cookie base.', img: './01_oreo_cheesecake.jpg' },
-  { id: 'matcha-cheesecake', category: 'Cheesecakes', name: 'Matcha Cheesecake', price: 7.90, tag: 'Premium Matcha', desc: 'Smooth matcha cheesecake with a soft earthy finish and light biscuit base.', img: './02_matcha_cheesecake.jpg' },
-  { id: 'basque-cheesecake', category: 'Cheesecakes', name: 'Basque Cheesecake', price: 7.90, tag: 'Classic', desc: 'Creamy burnt Basque cheesecake with a caramelised top.', img: './03_basque_cheesecake.jpg' },
+  { id: 'oreo-cheesecake', category: 'Cheesecakes', name: 'Oreo Cheesecake', price: 8.90, tag: 'Best Seller', desc: 'Cookies and cream cheesecake slice with Oreo crumble and a rich cookie base.', img: './01_oreo_cheesecake.jpg' },
+  { id: 'matcha-cheesecake', category: 'Cheesecakes', name: 'Matcha Cheesecake', price: 8.90, tag: 'Premium Matcha', desc: 'Smooth matcha cheesecake with a soft earthy finish and light biscuit base.', img: './02_matcha_cheesecake.jpg' },
+  { id: 'basque-cheesecake', category: 'Cheesecakes', name: 'Basque Cheesecake', price: 8.90, tag: 'Classic', desc: 'Creamy burnt Basque cheesecake with a caramelised top.', img: './03_basque_cheesecake.jpg' },
 
-  { id: 'oreo-dessert-cup', category: 'Dessert Cups', name: 'Oreo Dessert Cup', price: 6.50, tag: 'Popular', desc: 'Layered Oreo cream dessert cup with cookie crumble.', img: './04_oreo_dessert_cup.jpg' },
-  { id: 'tiramisu-dessert-cup', category: 'Dessert Cups', name: 'Tiramisu Dessert Cup', price: 6.50, tag: 'Coffee Cream', desc: 'Creamy tiramisu-inspired dessert cup with cocoa and biscuit layers.', img: './05_tiramisu_dessert_cup.jpg' },
-  { id: 'mango-dessert-cup', category: 'Dessert Cups', name: 'Mango Dessert Cup', price: 6.50, tag: 'Fruity', desc: 'Bright mango dessert cup with creamy layers and mango topping.', img: './06_mango_dessert_cup.jpg' },
-  { id: 'strawberry-dessert-cup', category: 'Dessert Cups', name: 'Strawberry Dessert Cup', price: 6.50, tag: 'Fruity', desc: 'Strawberry dessert cup with soft cream and berry topping.', img: './07_strawberry_dessert_cup.jpg' },
+  { id: 'oreo-dessert-cup', category: 'Dessert Cups', name: 'Oreo Dessert Cup', price: 5.90, tag: 'Popular', desc: 'Layered Oreo cream dessert cup with cookie crumble.', img: './04_oreo_dessert_cup.jpg' },
+  { id: 'tiramisu-dessert-cup', category: 'Dessert Cups', name: 'Tiramisu Dessert Cup', price: 5.90, tag: 'Coffee Cream', desc: 'Creamy tiramisu-inspired dessert cup with cocoa and biscuit layers.', img: './05_tiramisu_dessert_cup.jpg' },
+  { id: 'mango-dessert-cup', category: 'Dessert Cups', name: 'Mango Dessert Cup', price: 5.90, tag: 'Fruity', desc: 'Bright mango dessert cup with creamy layers and mango topping.', img: './06_mango_dessert_cup.jpg' },
+  { id: 'strawberry-dessert-cup', category: 'Dessert Cups', name: 'Strawberry Dessert Cup', price: 5.90, tag: 'Fruity', desc: 'Strawberry dessert cup with soft cream and berry topping.', img: './07_strawberry_dessert_cup.jpg' },
 
   { id: 'signature-jasmine-fruit-tea', category: 'Drinks', name: 'Signature Jasmine Fruit Tea', price: 5.50, tag: 'Signature', desc: 'Refreshing jasmine fruit tea with a bright tropical finish.', img: './08_signature_jasmine_fruit_tea.jpg' },
   { id: 'strawberry-jasmine-tea', category: 'Drinks', name: 'Strawberry Jasmine Tea', price: 5.80, tag: 'Refreshing', desc: 'Strawberry jasmine tea with fruity sweetness and floral tea notes.', img: './09_strawberry_jasmine_tea.jpg' },
@@ -23,6 +25,7 @@ let cart = JSON.parse(localStorage.getItem('wb-cart') || '{}');
 const money = n => `$${n.toFixed(2)}`;
 const count = () => Object.values(cart).reduce((a,b)=>a+b,0);
 const subtotal = () => products.reduce((sum,p)=>sum + (cart[p.id] || 0) * p.price, 0);
+const getProduct = id => products.find(p => p.id === id);
 
 function renderProducts(){
   const grid = document.getElementById('productGrid');
@@ -32,8 +35,8 @@ function renderProducts(){
       <h3>${group}</h3>
       <div class="category-grid">
         ${products.filter(p => p.category === group).map(p => `
-          <article class="product-card">
-            <img src="${p.img}" alt="${p.name}" loading="lazy" />
+          <article class="product-card" data-product="${p.id}" tabindex="0" role="button" aria-label="View ${p.name}">
+            <div class="product-photo"><img src="${p.img}" alt="${p.name}" loading="lazy" /></div>
             <div class="product-body">
               <span class="tag">${p.tag}</span>
               <h3>${p.name}</h3>
@@ -45,7 +48,21 @@ function renderProducts(){
       </div>
     </div>
   `).join('');
-  document.querySelectorAll('[data-add]').forEach(btn => btn.addEventListener('click', () => add(btn.dataset.add)));
+
+  document.querySelectorAll('[data-add]').forEach(btn => btn.addEventListener('click', e => {
+    e.stopPropagation();
+    add(btn.dataset.add);
+  }));
+
+  document.querySelectorAll('[data-product]').forEach(card => {
+    card.addEventListener('click', () => openProduct(card.dataset.product));
+    card.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        openProduct(card.dataset.product);
+      }
+    });
+  });
 }
 
 function renderCart(){
@@ -67,9 +84,69 @@ function renderCart(){
   document.querySelectorAll('[data-dec]').forEach(btn => btn.addEventListener('click', () => remove(btn.dataset.dec)));
 }
 
-function add(id){ cart[id] = (cart[id] || 0) + 1; renderCart(); }
+function add(id, amount = 1){ cart[id] = (cart[id] || 0) + amount; renderCart(); }
 function remove(id){ if(!cart[id]) return; cart[id]--; if(cart[id] <= 0) delete cart[id]; renderCart(); }
 function clearCart(){ cart = {}; renderCart(); }
+
+function createProductModal(){
+  const modal = document.createElement('div');
+  modal.className = 'product-modal';
+  modal.id = 'productModal';
+  modal.innerHTML = `
+    <div class="product-modal-bg" data-close-modal></div>
+    <div class="product-modal-card">
+      <button class="modal-close" data-close-modal aria-label="Close product details">×</button>
+      <div class="modal-image-wrap"><img id="modalProductImage" alt="" /></div>
+      <div class="modal-copy">
+        <span class="tag" id="modalProductTag"></span>
+        <h2 id="modalProductName"></h2>
+        <strong class="modal-price" id="modalProductPrice"></strong>
+        <p id="modalProductDesc"></p>
+        <div class="modal-qty-row">
+          <span>Quantity</span>
+          <div class="modal-qty"><button id="modalQtyMinus">−</button><strong id="modalQtyValue">1</strong><button id="modalQtyPlus">+</button></div>
+        </div>
+        <button class="btn primary full" id="modalAddCart">Add to Cart</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+
+  modal.querySelectorAll('[data-close-modal]').forEach(el => el.addEventListener('click', closeProduct));
+  document.getElementById('modalQtyMinus').addEventListener('click', () => { modalQty = Math.max(1, modalQty - 1); updateModalQty(); });
+  document.getElementById('modalQtyPlus').addEventListener('click', () => { modalQty += 1; updateModalQty(); });
+  document.getElementById('modalAddCart').addEventListener('click', () => {
+    if(activeProductId) add(activeProductId, modalQty);
+    closeProduct();
+  });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeProduct(); });
+}
+
+function updateModalQty(){
+  const qty = document.getElementById('modalQtyValue');
+  if(qty) qty.textContent = modalQty;
+}
+
+function openProduct(id){
+  const product = getProduct(id);
+  if(!product) return;
+  activeProductId = id;
+  modalQty = 1;
+  document.getElementById('modalProductImage').src = product.img;
+  document.getElementById('modalProductImage').alt = product.name;
+  document.getElementById('modalProductTag').textContent = product.tag;
+  document.getElementById('modalProductName').textContent = product.name;
+  document.getElementById('modalProductPrice').textContent = money(product.price);
+  document.getElementById('modalProductDesc').textContent = product.desc;
+  updateModalQty();
+  document.getElementById('productModal').classList.add('open');
+  document.body.classList.add('modal-open');
+}
+
+function closeProduct(){
+  const modal = document.getElementById('productModal');
+  if(modal) modal.classList.remove('open');
+  document.body.classList.remove('modal-open');
+}
 
 function submitOrder(e){
   e.preventDefault();
@@ -83,6 +160,7 @@ function submitOrder(e){
 document.addEventListener('DOMContentLoaded', () => {
   const hero = document.getElementById('heroImage');
   hero.src = './14_hero_oreo_cheesecake.jpg';
+  createProductModal();
   renderProducts();
   renderCart();
   document.getElementById('clearCartDesktop').addEventListener('click', clearCart);

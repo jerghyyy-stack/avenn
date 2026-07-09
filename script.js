@@ -2,7 +2,7 @@ const deliveryFee = 5;
 let activeProductId = null;
 let modalQty = 1;
 
-const imagePath = file => `./images/${file}`;
+const imagePath = file => `./public/products/${file}`;
 
 const products = [
   { id: 'matcha-cream', category: 'Cream Top Series', name: 'Matcha Cream', price: 8.90, tag: 'Signature', desc: 'Earthy matcha layered with fresh milk and finished with AVENN house cream.', image: imagePath('matcha-cream.png') },
@@ -47,6 +47,10 @@ const subtotal = () => products.reduce((sum,p)=>sum + (cart[p.id] || 0) * p.pric
 const getProduct = id => products.find(p => p.id === id);
 const groups = ['Cream Top Series', 'Crème Brûlée Series', 'Cookie Series', 'Mint Collection', 'Dessert Cream Soda', 'Premium Fruit Tea', 'Seasonal Magic Potion', 'Desserts'];
 
+function cleanPath(path){
+  return path.replace('./public/products/', '');
+}
+
 function imageTag(product){
   return `<img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.closest('.product-photo, .modal-image-wrap').classList.add('missing-image'); this.style.display='none';" />`;
 }
@@ -59,7 +63,7 @@ function renderProducts(){
       <div class="category-grid">
         ${products.filter(p => p.category === group).map(p => `
           <article class="product-card" data-product="${p.id}" tabindex="0" role="button" aria-label="View ${p.name}">
-            <div class="product-photo">${imageTag(p)}<span class="missing-label">Upload ${p.image.replace('./images/', '')}</span></div>
+            <div class="product-photo">${imageTag(p)}<span class="missing-label">Upload ${cleanPath(p.image)}</span></div>
             <div class="product-body">
               <span class="tag">${p.tag}</span>
               <h3>${p.name}</h3>
@@ -154,7 +158,7 @@ function openProduct(id){
   if(!product) return;
   activeProductId = id;
   modalQty = 1;
-  document.getElementById('modalProductVisual').innerHTML = `${imageTag(product)}<span class="missing-label">Upload ${product.image.replace('./images/', '')}</span>`;
+  document.getElementById('modalProductVisual').innerHTML = `${imageTag(product)}<span class="missing-label">Upload ${cleanPath(product.image)}</span>`;
   document.getElementById('modalProductTag').textContent = product.tag;
   document.getElementById('modalProductName').textContent = product.name;
   document.getElementById('modalProductPrice').textContent = money(product.price);

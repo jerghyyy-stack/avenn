@@ -3,24 +3,33 @@ let activeProductId = null;
 let modalQty = 1;
 
 const products = [
-  { id: 'oreo-cheesecake', category: 'Cheesecakes', name: 'Oreo Cheesecake', price: 8.90, tag: 'Best Seller', desc: 'Cookies and cream cheesecake slice with Oreo crumble and a rich cookie base.', img: './01_oreo_cheesecake.jpg' },
-  { id: 'matcha-cheesecake', category: 'Cheesecakes', name: 'Matcha Cheesecake', price: 8.90, tag: 'Premium Matcha', desc: 'Smooth matcha cheesecake with a soft earthy finish and light biscuit base.', img: './02_matcha_cheesecake.jpg' },
-  { id: 'basque-cheesecake', category: 'Cheesecakes', name: 'Basque Cheesecake', price: 8.90, tag: 'Classic', desc: 'Creamy burnt Basque cheesecake with a caramelised top.', img: './03_basque_cheesecake.jpg' },
+  { id: 'matcha-cream', category: 'Cream Top Series', name: 'Matcha Cream', price: 8.90, tag: 'Signature', desc: 'Earthy matcha layered with fresh milk and finished with AVENN house cream.', img: './12_matcha_latte.jpg' },
+  { id: 'black-sesame-cream', category: 'Cream Top Series', name: 'Black Sesame Cream', price: 8.90, tag: 'Nutty', desc: 'Roasted black sesame milk with a smooth cream top and deep toasted finish.', img: './13_strawberry_matcha_latte.jpg' },
+  { id: 'strawberry-cream', category: 'Cream Top Series', name: 'Strawberry Cream', price: 8.50, tag: 'Soft & Fruity', desc: 'Strawberry milk layered with silky house cream for a light dessert-drink feel.', img: './09_strawberry_jasmine_tea.jpg' },
 
-  { id: 'oreo-dessert-cup', category: 'Dessert Cups', name: 'Oreo Dessert Cup', price: 5.90, tag: 'Popular', desc: 'Layered Oreo cream dessert cup with cookie crumble.', img: './04_oreo_dessert_cup.jpg' },
-  { id: 'tiramisu-dessert-cup', category: 'Dessert Cups', name: 'Tiramisu Dessert Cup', price: 5.90, tag: 'Coffee Cream', desc: 'Creamy tiramisu-inspired dessert cup with cocoa and biscuit layers.', img: './05_tiramisu_dessert_cup.jpg' },
-  { id: 'mango-dessert-cup', category: 'Dessert Cups', name: 'Mango Dessert Cup', price: 5.90, tag: 'Fruity', desc: 'Bright mango dessert cup with creamy layers and mango topping.', img: './06_mango_dessert_cup.jpg' },
-  { id: 'strawberry-dessert-cup', category: 'Dessert Cups', name: 'Strawberry Dessert Cup', price: 5.90, tag: 'Fruity', desc: 'Strawberry dessert cup with soft cream and berry topping.', img: './07_strawberry_dessert_cup.jpg' },
+  { id: 'brulee-milk', category: 'Crème Brûlée Series', name: 'Crème Brûlée Milk', price: 8.90, tag: 'Caramel Custard', desc: 'Creamy milk with caramel custard notes, house cream and brûlée crumble.', img: './03_basque_cheesecake.jpg' },
+  { id: 'brulee-matcha', category: 'Crème Brûlée Series', name: 'Crème Brûlée Matcha', price: 9.50, tag: 'Premium', desc: 'Matcha milk finished with caramel cream and a brûlée-inspired crunch.', img: './02_matcha_cheesecake.jpg' },
+  { id: 'brulee-chocolate', category: 'Crème Brûlée Series', name: 'Crème Brûlée Chocolate', price: 9.20, tag: 'Indulgent', desc: 'Chocolate milk with caramel cream, cocoa notes and crunchy brûlée topping.', img: './05_tiramisu_dessert_cup.jpg' },
 
-  { id: 'signature-jasmine-fruit-tea', category: 'Drinks', name: 'Signature Jasmine Fruit Tea', price: 5.50, tag: 'Signature', desc: 'Refreshing jasmine fruit tea with a bright tropical finish.', img: './08_signature_jasmine_fruit_tea.jpg' },
-  { id: 'strawberry-jasmine-tea', category: 'Drinks', name: 'Strawberry Jasmine Tea', price: 5.80, tag: 'Refreshing', desc: 'Strawberry jasmine tea with fruity sweetness and floral tea notes.', img: './09_strawberry_jasmine_tea.jpg' },
-  { id: 'peach-jasmine-tea', category: 'Drinks', name: 'Peach Jasmine Tea', price: 5.80, tag: 'Refreshing', desc: 'Peach jasmine tea with a light, sweet and refreshing profile.', img: './10_peach_jasmine_tea.jpg' },
-  { id: 'yuzu-jasmine-tea', category: 'Drinks', name: 'Yuzu Jasmine Tea', price: 5.80, tag: 'Citrus', desc: 'Yuzu jasmine tea with a clean citrus finish.', img: './11_yuzu_jasmine_tea.jpg' },
-  { id: 'matcha-latte', category: 'Drinks', name: 'Matcha Latte', price: 5.80, tag: 'Latte', desc: 'Smooth matcha latte with a creamy finish.', img: './12_matcha_latte.jpg' },
-  { id: 'strawberry-matcha-latte', category: 'Drinks', name: 'Strawberry Matcha Latte', price: 6.20, tag: 'Latte', desc: 'Layered strawberry matcha latte with a creamy fruit base.', img: './13_strawberry_matcha_latte.jpg' }
+  { id: 'oreo-cream-milk', category: 'Cookie Series', name: 'Oreo Cream Milk', price: 8.90, tag: 'Best Seller', desc: 'Cookies-and-cream milk topped with house cream and generous Oreo crumble.', img: './04_oreo_dessert_cup.jpg' },
+  { id: 'biscoff-cream-milk', category: 'Cookie Series', name: 'Biscoff Cream Milk', price: 9.20, tag: 'Cookie Butter', desc: 'Caramel biscuit milk with smooth cream and spiced cookie crumble.', img: './06_mango_dessert_cup.jpg' },
+  { id: 'chocolate-cookie-cream', category: 'Cookie Series', name: 'Chocolate Cookie Cream', price: 8.90, tag: 'Chocolate', desc: 'Chocolate cookie milk with cream top and crunchy cookie bits.', img: './07_strawberry_dessert_cup.jpg' },
+
+  { id: 'peach-cream-soda', category: 'Dessert Cream Soda', name: 'Peach Cream Soda', price: 8.50, tag: 'Refreshing', desc: 'White peach soda topped with light cream for a fizzy dessert-style drink.', img: './10_peach_jasmine_tea.jpg' },
+  { id: 'yuzu-cream-soda', category: 'Dessert Cream Soda', name: 'Yuzu Cream Soda', price: 8.50, tag: 'Citrus', desc: 'Japanese yuzu soda softened with a smooth cream cap.', img: './11_yuzu_jasmine_tea.jpg' },
+  { id: 'strawberry-cream-soda', category: 'Dessert Cream Soda', name: 'Strawberry Cream Soda', price: 8.50, tag: 'Bright', desc: 'Strawberry sparkling soda with cream for a pretty, delivery-friendly treat.', img: './09_strawberry_jasmine_tea.jpg' },
+
+  { id: 'white-peach-oolong', category: 'Premium Fruit Tea', name: 'White Peach Oolong', price: 7.50, tag: 'Tea', desc: 'Oolong tea with white peach notes. Add cream if you want it richer.', img: './10_peach_jasmine_tea.jpg' },
+  { id: 'lychee-jasmine', category: 'Premium Fruit Tea', name: 'Lychee Jasmine', price: 7.50, tag: 'Floral', desc: 'Light jasmine tea with lychee sweetness and a clean finish.', img: './08_signature_jasmine_fruit_tea.jpg' },
+  { id: 'yuzu-jasmine', category: 'Premium Fruit Tea', name: 'Yuzu Jasmine', price: 7.50, tag: 'Citrus', desc: 'Jasmine tea with bright yuzu citrus, made for customers who prefer non-dairy drinks.', img: './11_yuzu_jasmine_tea.jpg' },
+
+  { id: 'galaxy-lychee', category: 'Seasonal Magic Potion', name: 'Galaxy Lychee', price: 7.90, tag: 'Limited', desc: 'Lychee sparkling drink with edible shimmer. Swirl before drinking for the effect.', img: './08_signature_jasmine_fruit_tea.jpg' },
+  { id: 'pink-stardust', category: 'Seasonal Magic Potion', name: 'Pink Stardust Lemonade', price: 7.90, tag: 'Sparkle', desc: 'Strawberry lemonade with edible shimmer for limited seasonal launches.', img: './09_strawberry_jasmine_tea.jpg' },
+
+  { id: 'oreo-cheesecake', category: 'Desserts', name: 'Oreo Cheesecake', price: 7.90, tag: 'Dessert', desc: 'Creamy Oreo cheesecake slice with cookie crumble and a rich biscuit base.', img: './01_oreo_cheesecake.jpg' }
 ];
 
-let cart = JSON.parse(localStorage.getItem('wb-cart') || '{}');
+let cart = JSON.parse(localStorage.getItem('avenn-cart') || '{}');
 
 const money = n => `$${n.toFixed(2)}`;
 const count = () => Object.values(cart).reduce((a,b)=>a+b,0);
@@ -29,10 +38,10 @@ const getProduct = id => products.find(p => p.id === id);
 
 function renderProducts(){
   const grid = document.getElementById('productGrid');
-  const groups = ['Cheesecakes', 'Dessert Cups', 'Drinks'];
+  const groups = ['Cream Top Series', 'Crème Brûlée Series', 'Cookie Series', 'Dessert Cream Soda', 'Premium Fruit Tea', 'Seasonal Magic Potion', 'Desserts'];
   grid.innerHTML = groups.map(group => `
     <div class="menu-category">
-      <h3>${group}</h3>
+      <div class="category-title"><h3>${group}</h3><span>${products.filter(p => p.category === group).length} items</span></div>
       <div class="category-grid">
         ${products.filter(p => p.category === group).map(p => `
           <article class="product-card" data-product="${p.id}" tabindex="0" role="button" aria-label="View ${p.name}">
@@ -41,7 +50,7 @@ function renderProducts(){
               <span class="tag">${p.tag}</span>
               <h3>${p.name}</h3>
               <p>${p.desc}</p>
-              <div class="price-row"><span class="price">${money(p.price)}</span><button class="add-btn" data-add="${p.id}">Add to Cart</button></div>
+              <div class="price-row"><span class="price">${money(p.price)}</span><button class="add-btn" data-add="${p.id}">Add</button></div>
             </div>
           </article>
         `).join('')}
@@ -66,7 +75,7 @@ function renderProducts(){
 }
 
 function renderCart(){
-  localStorage.setItem('wb-cart', JSON.stringify(cart));
+  localStorage.setItem('avenn-cart', JSON.stringify(cart));
   document.getElementById('cartCount').textContent = count();
   const lines = products.filter(p => cart[p.id]).map(p => `
     <div class="cart-line">
@@ -153,7 +162,7 @@ function submitOrder(e){
   if(count() === 0){ alert('Please add at least one item to cart first.'); return; }
   const data = new FormData(e.currentTarget);
   const items = products.filter(p => cart[p.id]).map(p => `${cart[p.id]} x ${p.name} (${money(p.price)})`).join('%0A');
-  const msg = `Hi Whisk & Bloom, I would like to place an order.%0A%0AItems:%0A${items}%0A%0ASubtotal: ${money(subtotal())}%0ADelivery: $5.00%0ATotal: ${money(subtotal()+deliveryFee)}%0A%0AName: ${data.get('name')}%0APhone: ${data.get('phone')}%0AAddress: ${data.get('address')}%0ADate: ${data.get('date')}%0ATime: ${data.get('time')}%0ARemarks: ${data.get('remarks') || '-'}%0A%0APayment: PayNow only, pending verification`;
+  const msg = `Hi AVENN, I would like to place an order.%0A%0AItems:%0A${items}%0A%0ASubtotal: ${money(subtotal())}%0ADelivery: $5.00%0ATotal: ${money(subtotal()+deliveryFee)}%0A%0AName: ${data.get('name')}%0APhone: ${data.get('phone')}%0AAddress: ${data.get('address')}%0ADate: ${data.get('date')}%0ATime: ${data.get('time')}%0ARemarks: ${data.get('remarks') || '-'}%0A%0APayment: PayNow only, pending verification`;
   window.open(`https://wa.me/6588928698?text=${msg}`, '_blank');
 }
 

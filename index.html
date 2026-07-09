@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Whisk & Bloom | Cakes & Drinks</title>
-  <meta name="description" content="Whisk & Bloom handmade cheesecakes, dessert cups and drinks, made to order in Singapore." />
+  <title>AVENN | Crafted Cream Drinks & Desserts</title>
+  <meta name="description" content="AVENN is a delivery-first dessert drink brand in Singapore, crafted by J & J. Explore cream drinks, brûlée drinks, cookie drinks, cream sodas, fruit teas and seasonal specials." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#home"><span class="brand-mark">W&B</span><span>Whisk & Bloom</span></a>
+    <a class="brand" href="#home"><span class="brand-mark">A</span><span>AVENN</span></a>
     <nav>
+      <a href="#collections">Collections</a>
       <a href="#menu">Menu</a>
-      <a href="#how">How to order</a>
+      <a href="#how">Delivery</a>
       <a href="#checkout">Checkout</a>
     </nav>
     <button class="cart-pill" id="openCartMobile">Cart <span id="cartCount">0</span></button>
@@ -24,35 +25,51 @@
   <main id="home">
     <section class="hero section-pad">
       <div class="hero-copy">
-        <p class="eyebrow">Freshly made to order</p>
-        <h1>Cakes, cups & handcrafted drinks.</h1>
-        <p class="hero-text">Small-batch cheesecakes, creamy dessert cups and refreshing drinks made for cosy moments, gifting and sweet cravings in Singapore.</p>
+        <p class="eyebrow">Crafted by J & J</p>
+        <h1>Layered cream drinks, made for little escapes.</h1>
+        <p class="hero-text">AVENN is a delivery-first dessert drink concept built around silky house cream, comforting flavours and photo-ready layers.</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#menu">Order now</a>
+          <a class="btn primary" href="#menu">Explore menu</a>
           <a class="btn ghost" href="https://wa.me/6588928698" target="_blank" rel="noreferrer">WhatsApp us</a>
         </div>
         <div class="notes">
-          <span>Freshly made</span>
-          <span>$5 delivery fee</span>
+          <span>Delivery only</span>
+          <span>Small-batch prep</span>
           <span>PayNow only</span>
         </div>
       </div>
       <div class="hero-card hero-gallery">
-        <img id="heroImage" class="hero-main" alt="Whisk & Bloom Oreo cheesecake" />
+        <img id="heroImage" class="hero-main" alt="AVENN crafted cream drink" />
         <div class="hero-side">
-          <img src="./02_matcha_cheesecake.jpg" alt="Matcha cheesecake" />
-          <img src="./09_strawberry_jasmine_tea.jpg" alt="Strawberry jasmine tea" />
+          <img src="./13_strawberry_matcha_latte.jpg" alt="Layered cream drink" />
+          <img src="./09_strawberry_jasmine_tea.jpg" alt="Refreshing fruit tea" />
         </div>
-        <div class="hero-badge">Freshly made<br><strong>PayNow only</strong></div>
+        <div class="hero-badge">Crafted cream<br><strong>delivery-first</strong></div>
+      </div>
+    </section>
+
+    <section id="collections" class="section-pad collections-wrap">
+      <div class="section-head centered">
+        <p class="eyebrow">The AVENN menu</p>
+        <h2>Six collections, one signature cream.</h2>
+        <p>The menu is designed to stay simple behind the scenes: one excellent house cream, layered across indulgent drinks, refreshing sodas and fruit teas.</p>
+      </div>
+      <div class="collection-grid">
+        <article><span>01</span><strong>Cream Top</strong><p>Matcha, sesame and strawberry drinks finished with house cream.</p></article>
+        <article><span>02</span><strong>Crème Brûlée</strong><p>Caramel custard-inspired drinks with a rich brûlée finish.</p></article>
+        <article><span>03</span><strong>Cookie</strong><p>Oreo and Biscoff-style dessert drinks for repeat cravings.</p></article>
+        <article><span>04</span><strong>Cream Soda</strong><p>Bright fruit sodas softened with a smooth cream cap.</p></article>
+        <article><span>05</span><strong>Fruit Tea</strong><p>Light jasmine and oolong teas, with optional cream.</p></article>
+        <article><span>06</span><strong>Seasonal</strong><p>Limited-edition sparkle drinks for launches and festive drops.</p></article>
       </div>
     </section>
 
     <section id="menu" class="section-pad menu-layout">
       <div class="content-column">
         <div class="section-head">
-          <p class="eyebrow">Our menu</p>
-          <h2>Cakes & Drinks Collection</h2>
-          <p>Choose your cheesecakes, dessert cups and drinks. Your order summary stays open on desktop and slides up smoothly on mobile.</p>
+          <p class="eyebrow">Order menu</p>
+          <h2>Crafted cream drinks & desserts</h2>
+          <p>Start with the signature cream drinks, then add something refreshing for balance. Prices are working launch prices and can be adjusted before going live.</p>
         </div>
         <div class="product-grid" id="productGrid"></div>
       </div>
@@ -73,9 +90,17 @@
     </section>
 
     <section id="how" class="section-pad info-strip">
-      <article><strong>Freshly made</strong><span>Prepared in small batches for the best taste.</span></article>
-      <article><strong>PayNow only</strong><span>Payment is confirmed manually via WhatsApp.</span></article>
-      <article><strong>Delivery $5</strong><span>Final availability will be confirmed after order submission.</span></article>
+      <article><strong>Delivery only</strong><span>No self-pickup at the moment. Orders are prepared for scheduled delivery.</span></article>
+      <article><strong>Small-batch prep</strong><span>Cream, tea bases and toppings are prepared in controlled batches for consistency.</span></article>
+      <article><strong>PayNow only</strong><span>Submit your order via WhatsApp, then make payment after confirmation.</span></article>
+    </section>
+
+    <section class="section-pad story-wrap">
+      <div>
+        <p class="eyebrow">Our story</p>
+        <h2>AVENN means a small haven for sweet moments.</h2>
+      </div>
+      <p>Crafted by J & J, AVENN was created around the idea of a simple treat that feels a little more special — smooth cream, layered flavours and drinks that arrive looking as good as they taste.</p>
     </section>
 
     <section id="checkout" class="section-pad checkout-wrap">
@@ -90,7 +115,7 @@
             <label>Preferred date<input required name="date" type="date" /></label>
             <label>Preferred time<select name="time"><option>12pm – 2pm</option><option>2pm – 4pm</option><option>4pm – 6pm</option><option>6pm – 8pm</option></select></label>
           </div>
-          <label>Remarks<textarea name="remarks" rows="2" placeholder="Optional notes"></textarea></label>
+          <label>Remarks<textarea name="remarks" rows="2" placeholder="Optional notes, allergies or sweetness preference"></textarea></label>
           <button class="btn primary full" type="submit">Place order via WhatsApp</button>
           <p class="fineprint">Payment by PayNow only for now. Please transfer after submitting your order; we will verify and confirm by WhatsApp.</p>
         </form>

@@ -4,15 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AVENN | Crafted Cream Drinks & Desserts</title>
-  <meta name="description" content="AVENN is a delivery-first dessert drink brand in Singapore, crafted by J & J. Explore cream drinks, brûlée drinks, cookie drinks, mint chocolate drinks, cream sodas, fruit teas and seasonal specials." />
+  <meta name="description" content="AVENN is a delivery-first dessert drink and cheesecake brand in Singapore, crafted by J & J. Explore cream drinks, brûlée drinks, cookie drinks, mint chocolate drinks, cream sodas, fruit teas, magic potions and desserts." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#home"><span class="brand-mark">A</span><span>AVENN</span></a>
+    <a class="brand" href="#home"><span class="brand-main">AVENN</span><span class="brand-sub">Crafted by J & J</span></a>
     <nav>
       <a href="#collections">Collections</a>
       <a href="#menu">Menu</a>
@@ -27,7 +27,7 @@
       <div class="hero-copy">
         <p class="eyebrow">Crafted by J & J</p>
         <h1>Layered cream drinks, made for little escapes.</h1>
-        <p class="hero-text">AVENN is a delivery-first dessert drink concept built around silky house cream, comforting flavours and photo-ready layers.</p>
+        <p class="hero-text">AVENN is a delivery-first dessert drink concept built around silky house cream, comforting flavours, cheesecakes and photo-ready layers.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#menu">Explore menu</a>
           <a class="btn ghost" href="https://wa.me/6588928698" target="_blank" rel="noreferrer">WhatsApp us</a>
@@ -39,10 +39,10 @@
         </div>
       </div>
       <div class="hero-card hero-gallery">
-        <img id="heroImage" class="hero-main" alt="AVENN crafted cream drink" />
+        <img id="heroImage" class="hero-main" src="./images/strawberry-matcha-cheesecake.png" alt="AVENN Strawberry Matcha Cheesecake" />
         <div class="hero-side">
-          <img src="./13_strawberry_matcha_latte.jpg" alt="Layered cream drink" />
-          <img src="./09_strawberry_jasmine_tea.jpg" alt="Refreshing fruit tea" />
+          <img src="./images/oreo-cream-milk.png" alt="Oreo Cream Milk" />
+          <img src="./images/peach-cream-soda.png" alt="Peach Cream Soda" />
         </div>
         <div class="hero-badge">Crafted cream<br><strong>delivery-first</strong></div>
       </div>
@@ -51,17 +51,18 @@
     <section id="collections" class="section-pad collections-wrap">
       <div class="section-head centered">
         <p class="eyebrow">The AVENN menu</p>
-        <h2>Seven collections, one signature cream.</h2>
-        <p>The menu is designed to stay simple behind the scenes: one excellent house cream, layered across indulgent drinks, mint chocolate, refreshing sodas and fruit teas.</p>
+        <h2>Eight collections, one premium feel.</h2>
+        <p>The menu is designed to stay simple behind the scenes: one excellent house cream, layered across indulgent drinks, mint chocolate, refreshing sodas, fruit teas and cheesecakes.</p>
       </div>
       <div class="collection-grid">
-        <article><span>01</span><strong>Cream Top</strong><p>Matcha, sesame and strawberry drinks finished with house cream.</p></article>
+        <article><span>01</span><strong>Cream Top</strong><p>Matcha, strawberry and sesame drinks finished with house cream.</p></article>
         <article><span>02</span><strong>Crème Brûlée</strong><p>Caramel custard-inspired drinks with a rich brûlée finish.</p></article>
-        <article><span>03</span><strong>Cookie</strong><p>Oreo and Biscoff-style dessert drinks for repeat cravings.</p></article>
-        <article><span>04</span><strong>Mint Collection</strong><p>Chocolate mint cream drinks with Andes-style shards and cookie crunch.</p></article>
+        <article><span>03</span><strong>Cookie</strong><p>Oreo, Biscoff and chocolate cookie drinks for repeat cravings.</p></article>
+        <article><span>04</span><strong>Mint Collection</strong><p>Chocolate mint cream drinks with mint chocolate shards and cookie crunch.</p></article>
         <article><span>05</span><strong>Cream Soda</strong><p>Bright fruit sodas softened with a smooth cream cap.</p></article>
-        <article><span>06</span><strong>Fruit Tea</strong><p>Light jasmine and oolong teas, with optional cream.</p></article>
-        <article><span>07</span><strong>Seasonal</strong><p>Limited-edition sparkle drinks for launches and festive drops.</p></article>
+        <article><span>06</span><strong>Fruit Tea</strong><p>Light jasmine and oolong teas with real fruit notes.</p></article>
+        <article><span>07</span><strong>Magic Potion</strong><p>Limited-edition sparkle drinks for launches and festive drops.</p></article>
+        <article><span>08</span><strong>Desserts</strong><p>Oreo cheesecake and strawberry matcha cheesecake, available by slice or whole cake.</p></article>
       </div>
     </section>
 
@@ -70,7 +71,7 @@
         <div class="section-head">
           <p class="eyebrow">Order menu</p>
           <h2>Crafted cream drinks & desserts</h2>
-          <p>Start with the signature cream drinks, then add something refreshing for balance. Prices are working launch prices and can be adjusted before going live.</p>
+          <p>Start with the signature cream drinks, then add something refreshing or a cheesecake slice. Prices are working launch prices and can be adjusted before going live.</p>
         </div>
         <div class="product-grid" id="productGrid"></div>
       </div>
@@ -101,7 +102,7 @@
         <p class="eyebrow">Our story</p>
         <h2>AVENN means a small haven for sweet moments.</h2>
       </div>
-      <p>Crafted by J & J, AVENN was created around the idea of a simple treat that feels a little more special — smooth cream, layered flavours and drinks that arrive looking as good as they taste.</p>
+      <p>Crafted by J & J, AVENN was created around the idea of a simple treat that feels a little more special — smooth cream, layered flavours and desserts that arrive looking as good as they taste.</p>
     </section>
 
     <section id="checkout" class="section-pad checkout-wrap">

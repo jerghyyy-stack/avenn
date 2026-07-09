@@ -38,29 +38,21 @@ const count = () => Object.values(cart).reduce((a,b)=>a+b,0);
 const subtotal = () => products.reduce((sum,p)=>sum + (cart[p.id] || 0) * p.price, 0);
 const getProduct = id => products.find(p => p.id === id);
 const groups = ['Cream Top Series', 'Crème Brûlée Series', 'Cookie Series', 'Mint Collection', 'Dessert Cream Soda', 'Premium Fruit Tea', 'Seasonal Magic Potion', 'Desserts'];
+const groupId = group => group.toLowerCase().replace(/è/g, 'e').replace(/û/g, 'u').replace(/é/g, 'e').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const cleanPath = path => path.replace('./products/', '');
 const imageTag = product => `<img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.closest('.product-photo, .modal-image-wrap').classList.add('missing-image'); this.style.display='none';" />`;
 
 function renderProducts(){
   const grid = document.getElementById('productGrid');
-  grid.innerHTML = groups.map(group => `<div class="menu-category"><div class="category-title"><h3>${group}</h3><span>${products.filter(p => p.category === group).length} items</span></div><div class="category-grid">${products.filter(p => p.category === group).map(p => `<article class="product-card" data-product="${p.id}" tabindex="0" role="button" aria-label="View ${p.name}"><div class="product-photo">${imageTag(p)}<span class="missing-label">Upload ${cleanPath(p.image)}</span></div><div class="product-body"><span class="tag">${p.tag}</span><h3>${p.name}</h3><p>${p.desc}</p><div class="price-row"><span class="price">${money(p.price)}</span><button class="add-btn" data-add="${p.id}">Add</button></div></div></article>`).join('')}</div></div>`).join('');
+  grid.innerHTML = groups.map(group => `<div class="menu-category" id="${groupId(group)}"><div class="category-title"><h3>${group}</h3><span>${products.filter(p => p.category === group).length} items</span></div><div class="category-grid">${products.filter(p => p.category === group).map(p => `<article class="product-card" data-product="${p.id}" tabindex="0" role="button" aria-label="View ${p.name}"><div class="product-photo">${imageTag(p)}<span class="missing-label">Upload ${cleanPath(p.image)}</span></div><div class="product-body"><span class="tag">${p.tag}</span><h3>${p.name}</h3><p>${p.desc}</p><div class="price-row"><span class="price">${money(p.price)}</span><button class="add-btn" data-add="${p.id}">Add</button></div></div></article>`).join('')}</div></div>`).join('');
   document.querySelectorAll('[data-add]').forEach(btn => btn.addEventListener('click', e => { e.stopPropagation(); add(btn.dataset.add); }));
-  document.querySelectorAll('[data-product]').forEach(card => {
-    card.addEventListener('click', () => openProduct(card.dataset.product));
-    card.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openProduct(card.dataset.product); } });
-  });
+  document.querySelectorAll('[data-product]').forEach(card => { card.addEventListener('click', () => openProduct(card.dataset.product)); card.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openProduct(card.dataset.product); } }); });
 }
 function renderCart(){
   localStorage.setItem('avenn-cart', JSON.stringify(cart));
   document.getElementById('cartCount').textContent = count();
   const lines = products.filter(p => cart[p.id]).map(p => `<div class="cart-line"><div><strong>${p.name}</strong><br><small>${money(p.price)} × ${cart[p.id]}</small></div><div class="qty"><button data-dec="${p.id}">−</button><span>${cart[p.id]}</span><button data-inc="${p.id}">+</button></div></div>`).join('') || 'Your cart is empty.';
-  ['Desktop','Mobile'].forEach(suffix => {
-    const el = document.getElementById(`cartItems${suffix}`);
-    el.innerHTML = lines;
-    el.classList.toggle('empty', count() === 0);
-    document.getElementById(`subtotal${suffix}`).textContent = money(subtotal());
-    document.getElementById(`total${suffix}`).textContent = money(count() ? subtotal() + deliveryFee : 0);
-  });
+  ['Desktop','Mobile'].forEach(suffix => { const el = document.getElementById(`cartItems${suffix}`); el.innerHTML = lines; el.classList.toggle('empty', count() === 0); document.getElementById(`subtotal${suffix}`).textContent = money(subtotal()); document.getElementById(`total${suffix}`).textContent = money(count() ? subtotal() + deliveryFee : 0); });
   document.querySelectorAll('[data-inc]').forEach(btn => btn.addEventListener('click', () => add(btn.dataset.inc)));
   document.querySelectorAll('[data-dec]').forEach(btn => btn.addEventListener('click', () => remove(btn.dataset.dec)));
 }
@@ -68,9 +60,7 @@ function add(id, amount = 1){ cart[id] = (cart[id] || 0) + amount; renderCart();
 function remove(id){ if(!cart[id]) return; cart[id]--; if(cart[id] <= 0) delete cart[id]; renderCart(); }
 function clearCart(){ cart = {}; renderCart(); }
 function createProductModal(){
-  const modal = document.createElement('div');
-  modal.className = 'product-modal';
-  modal.id = 'productModal';
+  const modal = document.createElement('div'); modal.className = 'product-modal'; modal.id = 'productModal';
   modal.innerHTML = `<div class="product-modal-bg" data-close-modal></div><div class="product-modal-card"><button class="modal-close" data-close-modal aria-label="Close product details">×</button><div class="modal-image-wrap" id="modalProductVisual"></div><div class="modal-copy"><span class="tag" id="modalProductTag"></span><h2 id="modalProductName"></h2><strong class="modal-price" id="modalProductPrice"></strong><p id="modalProductDesc"></p><div class="modal-qty-row"><span>Quantity</span><div class="modal-qty"><button id="modalQtyMinus">−</button><strong id="modalQtyValue">1</strong><button id="modalQtyPlus">+</button></div></div><button class="btn primary full" id="modalAddCart">Add to Cart</button></div></div>`;
   document.body.appendChild(modal);
   modal.querySelectorAll('[data-close-modal]').forEach(el => el.addEventListener('click', closeProduct));
@@ -81,21 +71,17 @@ function createProductModal(){
 }
 function updateModalQty(){ const qty = document.getElementById('modalQtyValue'); if(qty) qty.textContent = modalQty; }
 function openProduct(id){
-  const product = getProduct(id); if(!product) return;
-  activeProductId = id; modalQty = 1;
+  const product = getProduct(id); if(!product) return; activeProductId = id; modalQty = 1;
   document.getElementById('modalProductVisual').innerHTML = `${imageTag(product)}<span class="missing-label">Upload ${cleanPath(product.image)}</span>`;
   document.getElementById('modalProductTag').textContent = product.tag;
   document.getElementById('modalProductName').textContent = product.name;
   document.getElementById('modalProductPrice').textContent = money(product.price);
   document.getElementById('modalProductDesc').textContent = product.desc;
-  updateModalQty();
-  document.getElementById('productModal').classList.add('open');
-  document.body.classList.add('modal-open');
+  updateModalQty(); document.getElementById('productModal').classList.add('open'); document.body.classList.add('modal-open');
 }
 function closeProduct(){ const modal = document.getElementById('productModal'); if(modal) modal.classList.remove('open'); document.body.classList.remove('modal-open'); }
 function submitOrder(e){
-  e.preventDefault();
-  if(count() === 0){ alert('Please add at least one item to cart first.'); return; }
+  e.preventDefault(); if(count() === 0){ alert('Please add at least one item to cart first.'); return; }
   const data = new FormData(e.currentTarget);
   const items = products.filter(p => cart[p.id]).map(p => `${cart[p.id]} x ${p.name} (${money(p.price)})`).join('%0A');
   const msg = `Hi AVENN, I would like to place an order.%0A%0AItems:%0A${items}%0A%0ASubtotal: ${money(subtotal())}%0ADelivery: $5.00%0ATotal: ${money(subtotal()+deliveryFee)}%0A%0AName: ${data.get('name')}%0APhone: ${data.get('phone')}%0AAddress: ${data.get('address')}%0ADate: ${data.get('date')}%0ATime: ${data.get('time')}%0ARemarks: ${data.get('remarks') || '-'}%0A%0APayment: PayNow only, pending verification`;

@@ -10,7 +10,7 @@
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="hero.css" />
 </head>
@@ -29,30 +29,23 @@
   </header>
 
   <main id="home">
-    <section class="hero section-pad">
+    <section class="hero hero-redesign section-pad">
       <div class="hero-copy">
         <p class="eyebrow">Crafted by J & J</p>
-        <h1>Layered <span class="hero-accent">cream</span> drinks, cheesecakes & little <span class="hero-accent">escapes.</span></h1>
-        <p class="hero-text">Premium cream drinks and handcrafted desserts, made fresh in small batches and delivered to your door.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#menu">Explore the menu</a>
-          <a class="btn ghost" href="https://wa.me/6588928698" target="_blank" rel="noreferrer">WhatsApp us</a>
-        </div>
-        <div class="notes">
-          <span>Delivery only</span>
-          <span>Small-batch prep</span>
-          <span>PayNow only</span>
-        </div>
+        <div class="hero-ornament" aria-hidden="true"><span></span><i>✦</i><span></span></div>
+        <h1>
+          <span>Layered</span>
+          <span><em>cream</em> drinks,</span>
+          <span>cheesecakes <em>&amp;</em></span>
+          <span>little <em>escapes.</em></span>
+        </h1>
+        <div class="hero-divider" aria-hidden="true"></div>
+        <p class="hero-text">Delivery-first handcrafted drinks and desserts made with silky cream, bright fruit flavours and photo-ready layers.</p>
+        <a class="hero-menu-btn" href="#menu">Explore the menu <span>→</span></a>
       </div>
-      <div class="hero-card hero-gallery" aria-label="Featured AVENN products">
-        <img id="heroMainImage" class="hero-main" src="./products/hojicha-cream.png" alt="AVENN Hojicha Cream" />
-        <div class="hero-side">
-          <img id="heroSideImageA" src="./products/matcha-cream.png" alt="Matcha Cream" />
-          <img id="heroSideImageB" src="./products/strawberry-cream.png" alt="Strawberry Cream" />
-        </div>
-        <div class="hero-product-label"><span>Now featuring</span><strong id="heroProductName">Hojicha Cream</strong></div>
-        <div class="hero-badge">Crafted fresh<br><strong>delivery-first</strong></div>
-        <div class="hero-dots" id="heroDots" aria-label="Choose a featured product"></div>
+
+      <div class="hero-single-product">
+        <img src="./products/hojicha-cream.png" alt="AVENN Hojicha Cream" />
       </div>
     </section>
 
@@ -111,6 +104,5 @@
   <div class="mobile-cart" id="mobileCart"><div class="mobile-cart-panel"><div class="cart-head"><div><p class="eyebrow">Your order</p><h3>Cart</h3></div><button class="clear" id="closeCartMobile">Close</button></div><div id="cartItemsMobile" class="cart-items empty">Your cart is empty.</div><div class="totals"><div><span>Subtotal</span><strong id="subtotalMobile">$0.00</strong></div><div><span>Delivery</span><strong>$5.00</strong></div><div class="grand"><span>Total</span><strong id="totalMobile">$0.00</strong></div></div><a class="btn primary full" href="#checkout" id="checkoutMobile">Checkout</a></div></div>
   <a class="whatsapp" href="https://wa.me/6588928698" target="_blank" rel="noreferrer">WhatsApp</a>
   <script src="script.js"></script>
-  <script src="hero.js"></script>
 </body>
 </html>

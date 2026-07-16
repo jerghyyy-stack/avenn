@@ -7,14 +7,14 @@
   <meta name="description" content="Premium cream drinks, cheesecakes and handcrafted desserts by AVENN.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="hero.css" />
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#home" aria-label="AVENN home"><span class="brand-main">AVENN</span><span class="brand-sub">CRAFTED BY J &amp; J</span></a>
-    <nav><a href="#menu">Menu</a><a href="#delivery">Delivery</a><a href="#checkout">Checkout</a></nav>
+    <nav><a href="#menu">Menu</a><a href="#cheesecake-collection">Cheesecakes</a><a href="#delivery">Delivery</a><a href="#checkout">Checkout</a></nav>
     <button class="cart-pill" id="openCartMobile">Cart <span id="cartCount">0</span></button>
   </header>
 
@@ -22,16 +22,27 @@
     <section class="hero hero-integrated section-pad" id="hero">
       <div class="hero-copy">
         <p class="eyebrow hero-eyebrow">Crafted by J &amp; J</p>
-        <h1>Layered <span class="hero-accent">cream</span> drinks, cheesecakes &amp; little <span class="hero-accent">escapes.</span></h1>
+        <h1>
+          <span class="hero-line">Layered</span>
+          <span class="hero-line"><em>cream</em> drinks,</span>
+          <span class="hero-line">cheesecakes &amp;</span>
+          <span class="hero-line">little <em>escapes.</em></span>
+        </h1>
         <span class="hero-rule" aria-hidden="true"></span>
-        <p class="hero-text">Premium cream drinks and handcrafted desserts, made fresh in small batches and delivered to your door.</p>
-        <div class="hero-actions"><a class="btn hero-primary" href="#menu">Explore the menu <span aria-hidden="true">→</span></a><a class="btn ghost" href="https://wa.me/6588928698" target="_blank" rel="noreferrer">WhatsApp us</a></div>
+        <p class="hero-text">Premium handcrafted drinks and desserts, made fresh in small batches and delivered to your door.</p>
+        <div class="hero-actions">
+          <a class="btn hero-primary" href="#menu">Explore the menu <span aria-hidden="true">→</span></a>
+          <a class="btn hero-secondary" href="https://wa.me/6588928698" target="_blank" rel="noreferrer">WhatsApp</a>
+        </div>
+        <div class="hero-points" aria-label="AVENN service highlights">
+          <span>Delivery only</span><span>Made fresh</span><span>Small batch</span>
+        </div>
       </div>
 
       <div class="hero-stage" aria-live="polite">
         <div class="hero-glow" aria-hidden="true"></div>
-        <div class="hero-decoration hero-decoration-top" aria-hidden="true"></div>
-        <div class="hero-decoration hero-decoration-bottom" aria-hidden="true"></div>
+        <div class="hero-leaf hero-leaf-top" aria-hidden="true"></div>
+        <div class="hero-leaf hero-leaf-bottom" aria-hidden="true"></div>
         <img id="heroCup" class="hero-cup" src="./products/hero-oreo-cream-milk.png" alt="AVENN Oreo Cream Milk" />
         <div class="hero-product-copy"><span>Now serving</span><strong id="heroProductName">Oreo Cream Milk</strong></div>
         <div class="hero-dots" id="heroDots" aria-label="Choose a featured drink"></div>
